@@ -112,32 +112,32 @@ const AudioPlayer = (selector, audioFile) => {
 
 
     this.initialize = () => {
-        // init DOM hooks:
-        audio = containerElement.querySelector('#track');
-        playButton = containerElement.querySelector('#play_pause');
-        rwdButton = containerElement.querySelector('#rwd');
-        ffwdButton = containerElement.querySelector('#ffwd');
-        sliderInput = containerElement.querySelector('#player-time');
-
-        console.log(audio, playButton);
-        // attach events to event handlers (i.e. functions)
-        audio.ontimeupdate = jumpToTime;
-        audio.onended = resetTime;
-        audio.onloadeddata = function() {
-            console.log("preview loaded");
-            //resetTime();
-            //this.pause();
+                // init DOM hooks:
+                audio = containerElement.querySelector('#track');
+                playButton = containerElement.querySelector('#play_pause');
+                rwdButton = containerElement.querySelector('#rwd');
+                ffwdButton = containerElement.querySelector('#ffwd');
+                sliderInput = containerElement.querySelector('#player-time');
+        
+                console.log(audio, playButton);
+                // attach events to event handlers (i.e. functions)
+                audio.ontimeupdate = jumpToTime;
+                audio.onended = resetTime;
+                audio.onloadeddata = function() {
+                    console.log("preview loaded");
+                    //resetTime();
+                    //this.pause();
+                };
+                playButton.onclick = this.togglePlay;
+                rwdButton.onclick = skipBackward;
+                ffwdButton.onclick = skipForward;
+                sliderInput.oninput = customTime;
+                sliderInput.onchange = customTime;
+            };
+            this.initialize();
+            if (audioFile) {
+                this.setAudioFile(audioFile);
+            }
+            return this;
         };
-        playButton.onclick = this.togglePlay;
-        rwdButton.onclick = skipBackward;
-        ffwdButton.onclick = skipForward;
-        sliderInput.oninput = customTime;
-        sliderInput.onchange = customTime;
-    };
-    this.initialize();
-    if (audioFile) {
-        this.setAudioFile(audioFile);
-    }
-    return this;
-};
 

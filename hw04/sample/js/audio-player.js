@@ -125,6 +125,8 @@ const AudioPlayer = (selector, audioFile) => {
         audio.onended = resetTime;
         audio.onloadeddata = function() {
             console.log("preview loaded");
+            //resetTime();
+            //this.pause();
         };
         playButton.onclick = this.togglePlay;
         rwdButton.onclick = skipBackward;
@@ -138,4 +140,3 @@ const AudioPlayer = (selector, audioFile) => {
     }
     return this;
 };
-
